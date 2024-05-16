@@ -25,7 +25,7 @@ public class Weatherapp {
             URL url = new URL(urlString);
             JSONObject jsonObject = getJsonObject(url);
             JSONObject main = (JSONObject)jsonObject.get("main");
-            double temp = celciusToFarenheit((double)main.get("temp"));
+            double temp = KelvinoFarenheit((double)main.get("temp"));
             System.out.println("Temperature in "+city + " is " + temp);
         } catch (Exception e) {
             System.out.println("Error");
@@ -46,8 +46,8 @@ public class Weatherapp {
         return (JSONObject) parser.parse(response.toString());
     }
 
-    public static double celciusToFarenheit(double temp){
-        return ((double)((int)(temp*9/5+32)*100))/100;
+    public static double KelvinoFarenheit(double temp){
+        return ((double)((int)((temp-273.15)*9/5+32)*100))/100;
     }
 
 }
